@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     healthcheck:
-      test: ["CMD-SHELL", "curl --head  --request GET 127.0.0.1:{DOCKER_EXPOSED_PORT}/status/ | grep '200 OK'"]
+      test: ["CMD-SHELL", "/ts3monitor/healthcheck.sh"]
       interval: 30s
       timeout: 5s
       retries: 3
