@@ -1,0 +1,7 @@
+flask
+gunicorn
+icecream
+pip-tools
+python-dotenv
+requests
+ts3

@@ -1,9 +1,10 @@
 PYTHON_GLOBAL = python
-PYTHON = venv/bin/python
-PIP = venv/bin/pip
+VENV = venv/bin/
+PYTHON = $(VENV)python
+PIP = $(VENV)pip
 GIT = git
 
-.PHONY: install run
+.PHONY: install run build-requirements install-requirements requirements
 
 install:
 	$(info Creating virtual environment...)
@@ -12,6 +13,19 @@ install:
 	@$(PIP) install --upgrade pip
 	$(info Installing requirements...)
 	@$(PIP) install -r requirements.txt
+	$(info copying .env.example to .env)
+	@cp .env.example .env
 
-run:
+serve:
 	@$(PYTHON) main.py
+
+build-requirements:
+	$(info Building requirements...)
+	@$(PIP)-compile requirements.in -o requirements.txt
+
+install-requirements:
+	$(info Installing requirements...)
+	@$(PIP)-sync requirements.txt
+
+requirements: build-requirements install-requirements
+	$(info Requirements updated and installed)

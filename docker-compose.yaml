@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  ts3monitor:
+    restart: unless-stopped
+    build: .
+    container_name: ${CONTAINER_NAME}
+    command: bash -c "gunicorn --threads 1 --workers=2 main:app -b 0.0.0.0:${DOCKER_INTERNAL_PORT} --timeout=10"
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "curl --head  --request GET 127.0.0.1:{DOCKER_EXPOSED_PORT}/status/ | grep '200 OK'"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    ports:
+      - ${DOCKER_PORTS}
+
