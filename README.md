@@ -50,6 +50,9 @@ make serve
 python main.py
 ```
 
+Go to `http://localhost:8080/status` to check the status of the application server
+or to `http://localhost:8080/monitor` to check the status of the TeamSpeak 3 server.
+
 #### Docker
 ```bash
 docker-compose up -d --build

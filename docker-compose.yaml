@@ -14,5 +14,5 @@ services:
       timeout: 5s
       retries: 3
     ports:
-      - ${DOCKER_PORTS}
+      - ${DOCKER_EXPOSED_PORT}:${DOCKER_INTERNAL_PORT}
 

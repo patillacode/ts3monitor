@@ -14,7 +14,7 @@ install:
 	$(info Installing requirements...)
 	@$(PIP) install -r requirements.txt
 	$(info copying .env.example to .env)
-	@cp .env.example .env
+	@cp .env.sample .env
 
 serve:
 	@$(PYTHON) main.py
